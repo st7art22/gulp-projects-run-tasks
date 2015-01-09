@@ -4,6 +4,7 @@ var less = require('gulp-less');
 var minifycss = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var Gaze = require('gaze').Gaze;
+var plumber = require('gulp-plumber');
 
 var gulpPath = '../';
 var routers = require(gulpPath + 'routes');
@@ -17,7 +18,7 @@ module.exports = function(proj, taskName, isDev) {
 
     var taskNameFull = "" + proj + "-" + taskName;
     var lessDevPath = proj + "/" + routerLess;
-    
+
     var gaze = new Gaze(lessDevPath + "**/*.less");
 
     gulp.task(taskNameFull, function() {
@@ -35,9 +36,10 @@ module.exports = function(proj, taskName, isDev) {
     // TODO: попробовать запустить оба лайврелоада
     gulp.task(taskNameFull + '-abstract', function(){
         gulp.src(lessDevPath + "style.less")
-        .pipe(less())
-        .pipe(minifycss())
-        .pipe(gulp.dest(lessDevPath));
-        //.pipe(livereload());
+            .pipe(plumber())
+            .pipe(less())
+            .pipe(minifycss())
+            .pipe(gulp.dest(lessDevPath))
+            .pipe(livereload());
     });
-}
+};

@@ -15,7 +15,7 @@ module.exports = function(proj, taskName, isDev) {
     var lessDevPath = proj + "/" + routerLess;
   
     //TODO: сделать поизвольный набор файлов для слежения, а лучше массив
-    var gaze = new Gaze(lessDevPath + "**/*.*");
+    var gaze = new Gaze([lessDevPath + "**/*.php", lessDevPath + "**/*.html"]);
     livereload.listen();
 
     gulp.task(taskNameFull, function() {
