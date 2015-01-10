@@ -4,7 +4,7 @@ var gulpPath		= './gulp-dev/';
 var taskPath 		= gulpPath + 'tasks/';
 
 var getDirOrFiles 	= require(gulpPath + 'getDirs');
-var routers			= require(gulpPath + 'routes');
+//  var routers			= require(gulpPath + 'routes');
 var projects 		= getDirOrFiles(taskPath, true);
 
 

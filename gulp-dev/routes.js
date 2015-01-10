@@ -2,6 +2,11 @@
 var devPath = 'trunk/www/local/';
 
 module.exports = {
+	all: {
+		des: desPath,
+		dev: devPath
+	},
+
 	less: {
 		des: desPath + 'css/',
         dev: devPath + 'css/'
@@ -10,11 +15,6 @@ module.exports = {
 	js: {
 		des: desPath + 'js/',
 		dev: devPath + 'js/'
-	},
-
-	all: {
-		des: desPath,
-		dev: devPath
 	}
 
-}
+};

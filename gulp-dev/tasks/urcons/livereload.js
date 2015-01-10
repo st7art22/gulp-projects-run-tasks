@@ -8,4 +8,4 @@ var taskName = path.basename(__filename);
 // proj - имя проекта
 // taskName - имя самого таска
 // isDev - dev || des
-liveReloadModule(proj, taskName, false);
+liveReloadModule(proj, taskName, false, ['.php', '.html'], '/home/st7art/projects/');

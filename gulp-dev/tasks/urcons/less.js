@@ -8,4 +8,4 @@ var taskName = path.basename(__filename);
 // proj - имя проекта
 // taskName - имя самого таска
 // isDev - dev || des
-lessModule(proj, taskName, false);
+lessModule(proj, taskName, false, '/home/st7art/projects/');
