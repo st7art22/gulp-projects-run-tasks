@@ -4,6 +4,7 @@ var less = require('gulp-less');
 var minifycss = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var plumber = require('gulp-plumber');
+var sourcemaps = require('gulp-sourcemaps');
 var Gaze = require('gaze').Gaze;
 
 var gulpPath = '../';
@@ -19,7 +20,6 @@ module.exports = function(proj, taskName, isDev, pathProject) {
 
     var taskNameFull = "" + proj + "-" + taskName;
     var lessDevPath = pathProj + proj + "/" + routerLess;
-    console.log(lessDevPath);
     
     var gaze = new Gaze(lessDevPath + "**/*.less");
 
@@ -39,9 +39,11 @@ module.exports = function(proj, taskName, isDev, pathProject) {
     gulp.task(taskNameFull + '-abstract', function(){
         gulp.src(lessDevPath + "style.less")
             .pipe(plumber())
+            .pipe(sourcemaps.init())
             .pipe(less())
             .pipe(minifycss())
             .pipe(plumber.stop())
+            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(lessDevPath))
             .pipe(livereload());
     });
