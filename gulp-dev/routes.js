@@ -1,4 +1,4 @@
-﻿var desPath = 'trunk/design/markup/';
+var desPath = 'trunk/design/markup/';
 var devPath = 'trunk/www/local/';
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
 
 	less: {
 		des: desPath + 'css/',
-        dev: devPath + 'css/'
+		dev: devPath + 'css/'
 	},
 
 	js: {

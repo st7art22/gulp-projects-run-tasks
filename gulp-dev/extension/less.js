@@ -5,7 +5,8 @@ var minifycss = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
-var Gaze = require('gaze').Gaze;
+
+var watch = require('gulp-watch');
 
 var gulpPath = '../';
 var routers = require(gulpPath + 'routes');
@@ -20,18 +21,9 @@ module.exports = function(proj, taskName, isDev, pathProject) {
 
     var taskNameFull = "" + proj + "-" + taskName;
     var lessDevPath = pathProj + proj + "/" + routerLess;
-    
-    var gaze = new Gaze(lessDevPath + "**/*.less");
 
     gulp.task(taskNameFull, function() {
-
-        gaze.on('ready', function(watcher) { });
-
-        gaze.on('changed', function(filepath) {
-            gulp.start(taskNameFull + '-abstract');
-        });
-
-        gaze.on('added', function(filepath) {
+        watch(lessDevPath + "**/*.less", function(event) {
             gulp.start(taskNameFull + '-abstract');
         });
     });

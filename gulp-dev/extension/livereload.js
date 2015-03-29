@@ -1,7 +1,8 @@
 ﻿var path = require('path');
 var gulp = require('gulp');
 var livereload = require('gulp-livereload');
-var Gaze = require('gaze').Gaze;
+
+var watch = require('gulp-watch');
 
 var gulpPath = '../';
 var routers = require(gulpPath + 'routes');
@@ -14,29 +15,24 @@ module.exports = function(proj, taskName, isDev, fileType,  pathProject) {
     var taskName = path.basename(taskName, ext);
     var taskNameFull = "" + proj + "-" + taskName;
     var lessDevPath = pathProj + proj + "/" + routerLess;
+    var watchPath = '';
 
     if (Array.isArray(fileType)) {
         for (prop in fileType) {
             fileType[prop] = lessDevPath + '**/*' + fileType[prop];
         }
 
-        var gaze = new Gaze(fileType);
+        watchPath = fileType;
     } else {
-        var gaze = new Gaze(lessDevPath + "**/*.*");    
+        watchPath = lessDevPath + "**/*.*";
     }
     
     livereload.listen();
 
+
     gulp.task(taskNameFull, function() {
-
-        gaze.on('changed', function(filePath) {
-        	livereload.changed(filePath);
-        	console.log(taskNameFull + ' task done');
-        });
-
-        gaze.on('added', function(filePath) {
-        	livereload.changed(filePath);
-        	console.log(taskNameFull + ' task done');
+        watch(watchPath, function(event, filePath) {
+            livereload.changed(filePath);
         });
     });
 };
