@@ -7,4 +7,4 @@ var taskName = path.basename(__filename);
 // proj - имя проекта
 // taskName - имя самого таска
 // isDev - dev || des
-imageModule(proj, taskName, false, ['.png', '.jpg'], '/home/st7art/projects/');
+imageModule(proj, taskName, false, '/home/st7art/projects/');
