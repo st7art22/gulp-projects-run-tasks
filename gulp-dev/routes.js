@@ -15,6 +15,11 @@ module.exports = {
 	js: {
 		des: desPath + 'js/',
 		dev: devPath + 'js/'
+	},
+
+	img: {
+		des: desPath + 'img/',
+		dev: devPath + 'img/'
 	}
 
 };
